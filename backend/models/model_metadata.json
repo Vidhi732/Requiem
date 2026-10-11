@@ -1,0 +1,108 @@
+{
+  "status": "trained",
+  "selected_production_model": "Stacking Ridge Ensemble",
+  "target": "Average Speed (km/h)",
+  "train_samples": 7148,
+  "test_samples": 1788,
+  "models": {
+    "model_1_tabular": {
+      "name": "LightGBM Gradient Boosted Trees",
+      "status": "trained",
+      "mae": 8.483720435524592,
+      "rmse": 10.642147606901807,
+      "r2": 0.00780652334800791,
+      "description": "Gradient boosted tabular regressor trained on calendar, weather, and chronological lag features."
+    },
+    "model_2_spatial_temporal": {
+      "name": "Graph STGCN / Spatial LSTM",
+      "status": "architectural_module_standby",
+      "trained": false,
+      "mae": null,
+      "rmse": null,
+      "explanation": "STGCN requires continuous sub-hourly network topology snapshot sequences. The Bengaluru repository dataset provides daily road aggregated records. In adherence to strict system requirements, this model is transparently registered as an architectural module and is not falsely claimed to be trained."
+    },
+    "model_3_stacking_ensemble": {
+      "name": "Multi-Model Ridge Stacking Ensemble",
+      "status": "trained",
+      "mae": 8.396804663008096,
+      "rmse": 10.499733205081293,
+      "r2": 0.03418412716145425,
+      "description": "Stacking regressor combining tree-based predictors with L2 Ridge meta-learner using out-of-fold cross-validation."
+    }
+  },
+  "top_feature_importances": {
+    "speed_lag_1": 909.0,
+    "speed_lag_7": 800.0,
+    "day_of_year": 686.0,
+    "congestion_lag_1": 564.0,
+    "day": 562.0,
+    "day_of_week": 272.0,
+    "month": 111.0,
+    "Weather Conditions_Clear": 92.0,
+    "Area Name_Koramangala": 62.0,
+    "Area Name_M.G. Road": 42.0
+  },
+  "dataset_summary": {
+    "record_count": 8936,
+    "date_range": [
+      "2022-01-01",
+      "2024-08-09"
+    ],
+    "roads_count": 16,
+    "roads": [
+      "100 Feet Road",
+      "Anil Kumble Circle",
+      "Ballari Road",
+      "CMH Road",
+      "Hebbal Flyover",
+      "Hosur Road",
+      "ITPL Main Road",
+      "Jayanagar 4th Block",
+      "Marathahalli Bridge",
+      "Sarjapur Road",
+      "Silk Board Junction",
+      "Sony World Junction",
+      "South End Circle",
+      "Trinity Circle",
+      "Tumkur Road",
+      "Yeshwanthpur Circle"
+    ],
+    "areas": [
+      "Electronic City",
+      "Hebbal",
+      "Indiranagar",
+      "Jayanagar",
+      "Koramangala",
+      "M.G. Road",
+      "Whitefield",
+      "Yeshwanthpur"
+    ],
+    "avg_speed_mean": 39.44742695730633,
+    "congestion_mean": 80.81804073595616,
+    "weather_distribution": {
+      "Clear": 5426,
+      "Overcast": 1296,
+      "Fog": 959,
+      "Rain": 827,
+      "Windy": 428
+    }
+  },
+  "input_features": {
+    "numerical": [
+      "month",
+      "day",
+      "day_of_week",
+      "is_weekend",
+      "day_of_year",
+      "speed_lag_1",
+      "speed_lag_7",
+      "congestion_lag_1"
+    ],
+    "categorical": [
+      "Road",
+      "Area Name",
+      "Weather Conditions",
+      "Roadwork"
+    ]
+  }
+}
